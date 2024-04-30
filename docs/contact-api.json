@@ -1,0 +1,107 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Contact API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/contacts": {
+        "post": {
+          "summary": "Create a new contact",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "phone": { "type": "string" }
+                  },
+                  "required": ["name", "email"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Contact created successfully"
+            }
+          }
+        },
+        "get": {
+          "summary": "Search contacts",
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "description": "Search query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of contacts"
+            }
+          }
+        }
+      },
+      "/contacts/{id}": {
+        "put": {
+          "summary": "Update a contact",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of the contact to update",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "phone": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Contact updated successfully"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a contact",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of the contact to delete",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Contact deleted successfully"
+            }
+          }
+        }
+      }
+    }
+  }
